@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    overflow-x: hidden;
+}
+
+/* Main Page */
+.container {
+    margin-top: 50px;
+}
+
+img {
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 40px;
+    color: white;
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px #ff4e88;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #ff4e88;
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #ff1e6c;
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background-color: #555;
+    color: white;
+    position: absolute;
+}
+
+/* Love Section */
+#loveSection {
+    display: none;
+    padding: 40px;
+}
+
+.loveBox {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    max-width: 700px;
+    margin: auto;
+}
+
+#typedText {
+    font-size: 20px;
+    color: #444;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+/* Collage */
+#collageSection {
+    display: none;
+    padding: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+.grid img {
+    width: 100%;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="Shudhu-Tomari-Jonyo-শুধু-তোমারি-জন্য-Lyrical-Arijit-Singh-Shreya-Ghoshal-Indraadip-Dasgupta.mp3" type="audio/mpeg">
+</audio>
+
+<!-- First Page -->
+<div class="container" id="mainPage">
+    <img src="pic.webp" alt="Dudu Bubu">
+    <h1>Will You Be My Valentine? 💖</h1>
+    <button id="yesBtn">Yes 💗</button>
+    <button id="noBtn">No 💔</button>
+</div>
+
+<!-- Love Page -->
+<div id="loveSection">
+    <div class="loveBox">
+        <h1 style="color:#ff4e88;">Yayyy! 💖</h1>
+        <div id="typedText"></div>
+        <div id="memoryOption"></div>
+    </div>
+</div>
+
+<!-- Collage Page -->
+<div id="collageSection">
+    <h1 style="color:white;">Our 3 Years of Love ❤️</h1>
+    <div class="grid">
+        <img src="images/Photo.jpg" >
+        
+
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("bgMusic");
+
+/* NO button */
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+/* YES button */
+yesBtn.addEventListener("click", function() {
+
+    music.volume = 0.5;
+    music.play();
+
+    document.getElementById("mainPage").style.display = "none";
+    document.getElementById("loveSection").style.display = "block";
+
+    const text =
+`I know you will be my Valentine not just today, but for the rest of my life😅
+
+ami jani ami onek jhogra kori one jalai tomay but remember one thing i love you more than you know🥰 ..and more than that i love to show you how much i love you ....
+
+You are my everything, my best friend, my safe place, my home, my peace. I love you, my love❤️
+
+ami tomay chara amar entire life imagine korte parbo na ... bs ato tai chai prothek ta raag er por maniye nis amay r nahole ektu somoy diye dis dekhbi ami abar himu himu kore nijei chole asbo 😌...
+
+Stay safe, my love. I am always with you in every heartbeat, in every moment until my very last breath❤️`;
+
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typedText").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 40);
+        } else {
+            setTimeout(showMemoryOption, 100); 
+        }
+    }
+    typeWriter();
+});
+
+function showMemoryOption() {
+    const memoryDiv = document.getElementById("memoryOption");
+    memoryDiv.innerHTML = `
+        <h2 style="color:#ff4e88;">Do you want to see our 3 years memory? 💕</h2>
+        <button onclick="showCollage()">Yes 💖</button>
+    `;
+}
+
+function showCollage() {
+    document.getElementById("loveSection").style.display = "none";
+    document.getElementById("collageSection").style.display = "block";
+}
+</script>
+
+</body>
+</html>
